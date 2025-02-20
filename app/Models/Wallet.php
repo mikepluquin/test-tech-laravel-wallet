@@ -17,6 +17,8 @@ class Wallet extends Model
         'balance',
     ];
 
+    public const LOW_BALANCE_TRESHOLD = 10;
+
     /**
      * @return BelongsTo<User>
      */

@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\Wallet;
 use App\Observers\UserObserver;
+use App\Observers\WalletObserver;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -41,5 +43,6 @@ class AppServiceProvider extends ServiceProvider
         });
 
         User::observe(UserObserver::class);
+        Wallet::observe(WalletObserver::class);
     }
 }
