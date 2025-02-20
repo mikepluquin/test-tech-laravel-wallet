@@ -16,8 +16,8 @@ beforeEach(function () {
 });
 
 test('perform a transfer', function () {
-    $sender = User::factory()->create();
-    $recipient = User::factory()->create();
+    $sender = User::factory()->createQuietly();
+    $recipient = User::factory()->createQuietly();
 
     $source = Wallet::factory()->for($sender)->richChillGuy()->create();
     $target = Wallet::factory()->for($recipient)->create();

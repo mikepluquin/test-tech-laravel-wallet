@@ -12,7 +12,7 @@ use function Pest\Laravel\getJson;
 test('get account data', function () {
     $user = User::factory()
         ->has(Wallet::factory()->richChillGuy())
-        ->create(['name' => 'John Doe', 'email' => 'test@test.com']);
+        ->createQuietly(['name' => 'John Doe', 'email' => 'test@test.com']);
 
     actingAs($user);
 

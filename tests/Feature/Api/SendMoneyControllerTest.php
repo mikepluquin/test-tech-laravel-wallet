@@ -14,10 +14,9 @@ use function Pest\Laravel\postJson;
 test('send money to a friend', function () {
     $user = User::factory()
         ->has(Wallet::factory()->richChillGuy())
-        ->create();
+        ->createQuietly();
 
     $recipient = User::factory()
-        ->has(Wallet::factory())
         ->create();
 
     actingAs($user);

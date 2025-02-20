@@ -8,7 +8,7 @@ use App\Models\Wallet;
 use function Pest\Laravel\actingAs;
 
 test('dashboard page is displayed', function () {
-    $user = User::factory()->has(Wallet::factory()->richChillGuy())->create();
+    $user = User::factory()->has(Wallet::factory()->richChillGuy())->createQuietly();
     $wallet = Wallet::factory()->richChillGuy()->for($user)->create();
 
     $response = actingAs($user)->get('/');
@@ -23,8 +23,17 @@ test('dashboard page is displayed', function () {
         ]);
 });
 
+test('dashboard page is displayed with default wallet', function () {
+    $user = User::factory()->create();
+
+    $response = actingAs($user)->get('/');
+
+    $response
+        ->assertOk();
+});
+
 test('send money to a friend', function () {
-    $user = User::factory()->has(Wallet::factory()->richChillGuy())->create();
+    $user = User::factory()->has(Wallet::factory()->richChillGuy())->createQuietly();
     $recipient = User::factory()->has(Wallet::factory())->create();
 
     $response = actingAs($user)->post('/send-money', [
