@@ -22,7 +22,7 @@ class RecurringTransferController
             // Save recurring transfer
             $transfer = RecurringTransfer::create([
                 'source_id' => $source->id,
-                'target_id' => $recipient->wallet,
+                'target_id' => $recipient->wallet->id,
                 'amount' => $amount = $request->getAmountInCents(),
                 'reason' => $reason = $request->input('reason'),
                 'start_date' => $start_date = $request->input('start_date'),
